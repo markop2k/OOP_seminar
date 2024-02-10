@@ -1,7 +1,7 @@
-    from korisnik import prijava, unos_registracije, provjeri_prijavu, odjava, ispis_korisnika
-    from financije import unos_transakcije, ispis_transakcija
-    from utilities import unos_intervala
-    import sqlite3
+from korisnik import prijava, unos_registracije, provjeri_prijavu, odjava, ispis_korisnika
+from financije import unos_transakcije, ispis_transakcija
+from utilities import unos_intervala
+import sqlite3
 
 # Povezivanje s bazom podataka
 conn = sqlite3.connect('faks.db')
