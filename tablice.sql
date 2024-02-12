@@ -30,7 +30,7 @@ VALUES ('Parko', 'www', 'Marko', 'P', 7);
 
 INSERT INTO dobitak (korisnicko_ime, ime_kategorije, datum, dobitak, tip)
 VALUES ('Parko', 'Placa', '2023-10-10', 10.12, 'dobitak'),
-       ('Parko', 'Prodaja', '2024-11-05', 4.10, 'dobitak');
+       ('Parko', 'Prodaja', '2024-11-05', 4.12, 'dobitak');
 
 INSERT INTO trosak (korisnicko_ime, ime_kategorije, datum, trosak, tip)
 VALUES ('Parko', 'Racuni', '2020-07-03', 20.99, 'trosak'),

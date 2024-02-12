@@ -5,7 +5,7 @@ def unos_datuma():
                 dan = int(input(f'Unesite dan transakcije: '))
                 mjesec = int(input(f'Unesite mjesec transakcije: '))
                 godina = int(input(f'Unesite godinu transakcije: '))
-                datum = date(godina, mjesec, dan).strftime("%Y.%m.%d.")
+                datum = date(godina, mjesec, dan).strftime("%Y-%m-%d")
 
             except ValueError as e:
                 print(e)
