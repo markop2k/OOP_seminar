@@ -1,4 +1,16 @@
 from datetime import date
+def unos_datuma():
+    while True:
+            try:
+                dan = int(input(f'Unesite dan transakcije: '))
+                mjesec = int(input(f'Unesite mjesec transakcije: '))
+                godina = int(input(f'Unesite godinu transakcije: '))
+                datum = date(godina, mjesec, dan).strftime("%Y.%m.%d.")
+
+            except ValueError as e:
+                print(e)
+            else:
+                return datum
 
 def unos_intervala(min, max):
     while True:
@@ -31,18 +43,19 @@ def unos_teksta(poruka):
         else:
             return tekst
 
-def unos_datuma():
+def unos_znakova(poruka):
     while True:
-            try:
-                dan = int(input(f'Unesite dan transakcije: '))
-                mjesec = int(input(f'Unesite mjesec transakcije: '))
-                godina = int(input(f'Unesite godinu transakcije: '))
-                datum = date(godina, mjesec, dan).strftime("%d.%m.%Y.")
+        try:
+            tekst = input(poruka)
 
-            except ValueError as e:
-                print(e)
-            else:
-                return datum
+            if len(tekst) == 0:
+                raise Exception("Morate unijeti vise zankova!")
+
+        except Exception as e:
+            print(e)
+
+        else:
+            return tekst
 
 def unos_realnog_pozitivnog_broja(poruka):
     while True:
@@ -58,18 +71,3 @@ def unos_realnog_pozitivnog_broja(poruka):
             print(e)
         else:
             return broj
-
-def unos_znakova(poruka):
-    while True:
-        try:
-            tekst = input(poruka)
-
-            if len(tekst) == 0:
-                raise Exception("Morate unijeti vise zankova!")
-
-        except Exception as e:
-            print(e)
-
-        else:
-            return tekst
-

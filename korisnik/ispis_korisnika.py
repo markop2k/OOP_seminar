@@ -6,6 +6,7 @@ def ispis_korisnika(cursor, trenutni_korisnik):
     print(f"Informacije o korisniku:")
     for korisnik in korisnici:
         print(f"Korisničko ime: {korisnik[0]}  "
-              f"\nIme i prezime: {korisnik[1]} {korisnik[2]}  "
+              f"\nIme: {korisnik[1]} "
+              f"\nprezime: {korisnik[2]}  "
               f"\nSaldo: {korisnik[3]}")
 

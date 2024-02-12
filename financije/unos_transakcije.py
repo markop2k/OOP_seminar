@@ -1,5 +1,6 @@
 from utilities import unos_datuma, unos_realnog_pozitivnog_broja, unos_znakova
 from .azuriraj_saldo import update_saldo
+from .transakcija import Transakcija
 
 
 def unos_transakcije(cursor, trenutni_korisnik, tip, dobitak=None, trosak=None):
@@ -19,24 +20,21 @@ def unos_transakcije(cursor, trenutni_korisnik, tip, dobitak=None, trosak=None):
         saldo = 0  # Set a default value for saldo or handle it as appropriate
         print("No saldo found for the user")
 
-    try:
-        if tip == "dobitak": #Ako je odabran unos dobitka
-            cijena = unos_realnog_pozitivnog_broja("Koliki je dobitak: ")
-            saldo += float(cijena)
+    if tip == "dobitak": #Ako je odabran unos dobitka
+        cijena = unos_realnog_pozitivnog_broja("Koliki je dobitak: ")
+        saldo += float(cijena)
             #Upis u database
-            query = "INSERT INTO dobitak (korisnicko_ime, ime_kategorije, datum, dobitak, tip) VALUES (?, ?, ?, ?, ?)"
-            cursor.execute(query, (trenutni_korisnik, ime_kategorije, datum, cijena, tip))
-            update_saldo(cursor, trenutni_korisnik, saldo)
+        query = "INSERT INTO dobitak (korisnicko_ime, ime_kategorije, datum, dobitak, tip) VALUES (?, ?, ?, ?, ?)"
+        cursor.execute(query, (trenutni_korisnik, ime_kategorije, datum, cijena, tip))
+        update_saldo(cursor, trenutni_korisnik, saldo)
+        return Transakcija(ime_kategorije, datum, cijena, tip)
 
-        elif tip == "trosak": #Ako je odabran unos troska
-            cijena = unos_realnog_pozitivnog_broja("Koliki je trosak: ")
-            saldo -= float(cijena)
+    elif tip == "trosak": #Ako je odabran unos troska
+        cijena = unos_realnog_pozitivnog_broja("Koliki je trosak: ")
+        saldo -= float(cijena)
             # Upis u database
-            query = "INSERT INTO trosak (korisnicko_ime, ime_kategorije, datum, trosak, tip) VALUES (?, ?, ?, ?, ?)"
-            cursor.execute(query, (trenutni_korisnik, ime_kategorije, datum, cijena, tip))
-            update_saldo(cursor, trenutni_korisnik, saldo)
-
-    except Exception as e:
-        # Handle any exceptions that might occur during database operations
-        print("Pogreška kod unosa u bazu  podataka, ponovite", e)
+        query = "INSERT INTO trosak (korisnicko_ime, ime_kategorije, datum, trosak, tip) VALUES (?, ?, ?, ?, ?)"
+        cursor.execute(query, (trenutni_korisnik, ime_kategorije, datum, cijena, tip))
+        update_saldo(cursor, trenutni_korisnik, saldo)
+        return Transakcija(ime_kategorije, datum, cijena, tip)
 

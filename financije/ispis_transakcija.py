@@ -1,6 +1,7 @@
-from utilities import unos_datuma
+from .transakcija import Transakcija
 def ispis_transakcija(cursor, trenutni_korisnik):
-    # Provjera postojanja korisničkog imena u bazi podataka
+    # odabri
+
     query = """
             SELECT ime_kategorije, datum, dobitak, tip FROM dobitak WHERE korisnicko_ime = ?
             UNION ALL
@@ -9,11 +10,9 @@ def ispis_transakcija(cursor, trenutni_korisnik):
     cursor.execute(query, (trenutni_korisnik, trenutni_korisnik))
     transakcije = cursor.fetchall()
 
-
     print("Popis svih transakcija:")
     for transakcija in transakcije:
-        print("Informacije o transakciji:")
-        print(f"Ime kategorije: {transakcija[0]}")
-        print(f"Datum: {transakcija[1]}")
-        print(f"Iznos: {transakcija[2]}")
-        print(f"Tip: {transakcija[3]}")
+        ime_kategorije, datum, cijena, tip = transakcija[0], transakcija[1], transakcija[2], transakcija[3]
+        data = Transakcija(ime_kategorije, datum, cijena, tip)
+        data.ispis()
+

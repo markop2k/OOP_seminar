@@ -1,6 +1,5 @@
 from utilities import unos_znakova
 
-trenutni_korisnik = None  # This variable will store the currently logged-in user
 
 
 def prijava(cursor):
