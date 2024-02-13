@@ -1,7 +1,5 @@
 from utilities import unos_znakova
 
-
-
 def prijava(cursor):
     korisnicko_ime = unos_znakova(f'Unesite korisničko ime: ')
     lozinka = unos_znakova(f'Unesite lozinku: ')

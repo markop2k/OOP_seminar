@@ -3,7 +3,6 @@ from utilities import unos_teksta, unos_realnog_pozitivnog_broja, unos_znakova
 
 def unos_registracije(cursor):
         korisnicko_ime = unos_znakova("Unesite novo korisničko ime: ")
-
         # Provjera postojanja korisničkog imena u bazi podataka
         query = "SELECT korisnicko_ime FROM korisnik WHERE korisnicko_ime = ?"
         cursor.execute(query, (korisnicko_ime,))
@@ -16,9 +15,9 @@ def unos_registracije(cursor):
                 saldo = unos_realnog_pozitivnog_broja(f'Unesite saldo: ')
 
                 query = f'''
-                                        INSERT INTO korisnik (korisnicko_ime, lozinka, ime, prezime, saldo)
-                                        VALUES ('{korisnicko_ime}', '{lozinka}', '{ime}', '{prezime}','{saldo}')
-                                        '''
+                        INSERT INTO korisnik (korisnicko_ime, lozinka, ime, prezime, saldo)
+                        VALUES ('{korisnicko_ime}', '{lozinka}', '{ime}', '{prezime}','{saldo}')
+                        '''
                 cursor.execute(query)
                 print("Registracija uspješna.")
                 return korisnicko_ime

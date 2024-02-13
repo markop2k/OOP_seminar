@@ -2,23 +2,22 @@ from utilities import unos_datuma, unos_realnog_pozitivnog_broja, unos_znakova
 from .azuriraj_saldo import update_saldo
 from .transakcija import Transakcija
 
-
-def unos_transakcije(cursor, trenutni_korisnik, tip, dobitak=None, trosak=None):
+def unos_transakcije(cursor, trenutni_korisnik, tip):
     ime_kategorije = unos_znakova("Unesite ime kategorije: ").upper()
     datum = unos_datuma()
 
     # Trazi saldo iz database
     query = "SELECT saldo FROM korisnik WHERE korisnicko_ime = ?"
     cursor.execute(query, (trenutni_korisnik,))
-    saldo_row = cursor.fetchone()
+    provjera_slado = cursor.fetchone()
 
-    if saldo_row: # Ako ima slado
-        saldo = saldo_row[0]
+    if provjera_slado: # Ako ima slado
+        saldo = provjera_slado[0]
         print(saldo)
 
     else: # Ako nema saldo
-        saldo = 0  # Set a default value for saldo or handle it as appropriate
-        print("No saldo found for the user")
+        saldo = 0
+        print("Nije pronađeno saldo")
 
     if tip == "dobitak": #Ako je odabran unos dobitka
         cijena = unos_realnog_pozitivnog_broja("Koliki je dobitak: ")
